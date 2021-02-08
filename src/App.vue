@@ -1,32 +1,73 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <!-- The appbar -->
+    <v-app-bar app color="primary" dark clipped-left>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+
+      <v-btn v-if="!miniVariant" icon @click="miniVariant = true">
+        <v-icon>mdi-chevron-left</v-icon>
+      </v-btn>
+
+      <v-btn v-else icon @click="miniVariant = false">
+        <v-icon>mdi-chevron-right</v-icon>
+      </v-btn>
+
+      <v-toolbar-title>Badge</v-toolbar-title>
+    </v-app-bar>
+
+    <!-- The Navigation drawer -->
+    <v-navigation-drawer
+      app
+      clipped
+      v-model="drawer"
+      :mini-variant="miniVariant"
+      color="grey lighten-4"
+    >
+      <v-list dense nav>
+        <v-list-item-group v-model="selectedNavItem" color="primary">
+          <v-list-item v-for="item in items" :key="item.title" link :to="item.link">
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+
+    <!-- The main content rendering using vue router -->
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+export default {
+  name: "App",
 
-#nav {
-  padding: 30px;
+  data: () => ({
+    drawer: true,
+    miniVariant: false,
+    selectedNavItem: 0,
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+    /* NAVIGATION MENU ITEMS */
+    items: [
+      { title: "Home", icon: "mdi-home" , link:"/"},
+      { title: "Users", icon: "mdi-account-multiple", link:"/about" },
+      { title: "Businesses", icon: "mdi-briefcase-variant", link:"" },
+      { title: "Adverts", icon: "mdi-apps", link:"" },
+      { title: "Survey", icon: "mdi-view-dashboard", link:"" },
+      { title: "Accounts", icon: "mdi-currency-usd", link:"" },
+    ],
+    right: null,
+  }),
+};
+</script>
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+<style lang="scss" >
+   @import '@/sass/base';
 </style>
