@@ -25,7 +25,12 @@
     >
       <v-list dense nav>
         <v-list-item-group v-model="selectedNavItem" color="primary">
-          <v-list-item v-for="item in items" :key="item.title" link :to="item.link">
+          <v-list-item
+            v-for="item in items"
+            :key="item.title"
+            link
+            :to="item.link"
+          >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
@@ -56,12 +61,12 @@ export default {
 
     /* NAVIGATION MENU ITEMS */
     items: [
-      { title: "Home", icon: "mdi-home" , link:"/"},
-      { title: "Users", icon: "mdi-account-multiple", link:"/about" },
-      { title: "Businesses", icon: "mdi-briefcase-variant", link:"" },
-      { title: "Adverts", icon: "mdi-apps", link:"" },
-      { title: "Survey", icon: "mdi-view-dashboard", link:"" },
-      { title: "Accounts", icon: "mdi-currency-usd", link:"" },
+      { title: "Home", icon: "mdi-home", link: "/" },
+      { title: "Users", icon: "mdi-account-multiple", link: "/about" },
+      { title: "Businesses", icon: "mdi-briefcase-variant", link: "" },
+      { title: "Adverts", icon: "mdi-apps", link: "" },
+      { title: "Survey", icon: "mdi-view-dashboard", link: "" },
+      { title: "Accounts", icon: "mdi-currency-usd", link: "" },
     ],
     right: null,
   }),
@@ -69,5 +74,5 @@ export default {
 </script>
 
 <style lang="scss" >
-   @import '@/sass/base';
+@import "@/sass/base";
 </style>

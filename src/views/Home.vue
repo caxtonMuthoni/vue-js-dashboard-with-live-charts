@@ -73,7 +73,6 @@ export default {
   },
 
   methods: {
-    
     /* Set Bar chart Data */
     setBarChartData() {
       this.userChartData = {
@@ -88,18 +87,17 @@ export default {
               "rgba(255, 206, 86, 1)",
               "rgba(75, 192, 192, 1)",
               "rgba(255,99,132,1)",
-              'rgba(254, 62, 235, 1)',
-              'rgba(155, 199, 32, 1)',
+              "rgba(254, 62, 235, 1)",
+              "rgba(155, 199, 32, 1)",
             ],
             backgroundColor: [
               "rgba(255, 206, 86, 0.2)",
               "rgba(75, 192, 192, 0.2)",
               "rgba(255,99,132,0.2)",
-              'rgba(254, 62, 235, 0.2)',
-              'rgba(155, 199, 32, 0.2)',
-              'rgba(4, 62, 235, 0.2)',
-              'rgba(54, 162, 250, 0.2)',
-              
+              "rgba(254, 62, 235, 0.2)",
+              "rgba(155, 199, 32, 0.2)",
+              "rgba(4, 62, 235, 0.2)",
+              "rgba(54, 162, 250, 0.2)",
             ],
           },
         ],
@@ -126,16 +124,16 @@ export default {
     /* SETTING USER DATA */
     setUserData() {
       const currentUserData = [36, 38, 15, 9, 16, 12, 10];
-      this.userData = currentUserData
+      this.userData = currentUserData;
 
       let today = currentUserData[currentUserData.length - 1];
 
       this.setUserLineChartData();
       this.setBarChartData();
-      
+
       // Updating todays new users after every 30 seconds
       setInterval(() => {
-        today += (Math.floor(Math.random() * 10) + 1);
+        today += Math.floor(Math.random() * 10) + 1;
         currentUserData[currentUserData.length - 1] = today;
         this.userData = currentUserData;
         this.setUserLineChartData();
